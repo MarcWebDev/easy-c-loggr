@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Logger = void 0;
+exports["default"] = void 0;
 
 var _ansiColors = _interopRequireDefault(require("ansi-colors"));
 
@@ -80,4 +80,4 @@ var Logger = /*#__PURE__*/function () {
   return Logger;
 }();
 
-exports.Logger = Logger;
+exports["default"] = Logger;

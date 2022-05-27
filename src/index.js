@@ -15,7 +15,7 @@ function formatString(type) {
   }
 }
 
-export class Logger {
+export default class Logger {
   formattedDate = false;
   formatLanguage = 'EN';
 
