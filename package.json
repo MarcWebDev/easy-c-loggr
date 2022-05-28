@@ -1,6 +1,6 @@
 {
   "name": "easy-c-loggr",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "types": "index.d.ts",
   "description": "An easy-to-use package to create beautiful console logs within seconds.",
   "main": "index.js",
@@ -18,7 +18,7 @@
     "easy-console-log"
   ],
   "author": "MarcDev",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/MarcWebDev/easy-c-loggr/issues"
   },
