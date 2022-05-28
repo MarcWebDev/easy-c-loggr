@@ -14,9 +14,9 @@ An easy-to-use tool to create beautiful and consistant console logs within secon
 
 ```js
 const Logger = require('easy-c-loggr').default;
-const logger = new Logger(true, 'EN');
+const logger = new Logger({ formattedDate: true, formatLanguage: 'EN' });
 /*
- * new Logger(TIMESTAMP_IS_FORMATTED, FORMAT_LANGUAGE)
+ * new Logger({ TIMESTAMP_IS_FORMATTED, FORMAT_LANGUAGE })
  * by default, timestamp formation is disabled, with 'true' you enable it and can choose the language
  * currently available languages: EN, DE
  */
@@ -26,7 +26,7 @@ const logger = new Logger(true, 'EN');
 
 ```ts
 import Logger from 'easy-c-loggr';
-const logger = new Logger(true, 'EN');
+const logger = new Logger({ formattedDate: true, formatLanguage: 'EN' });
 /*
  * new Logger(TIMESTAMP_IS_FORMATTED, FORMAT_LANGUAGE)
  * by default, timestamp formation is disabled, with 'true' you enable it and can choose the language
@@ -42,6 +42,15 @@ logger.hint('Hint message'); // Blue hint message
 logger.log('Log message'); // White log message
 logger.success('Success message'); // Green success message
 logger.warn('Warn message'); // Yellow warn message
+```
+
+### Advanced configuration
+```js
+logger.setPrefixes({ error: 'ERROR:', log: 'LOG:', hint: 'HINT:', success: 'OK', warn: 'WARN:' });
+/*
+* The setPrefixes method sets prefixes for the default functions that get added before EVERY log message.
+*/
+logger.error('404 Not found'); // Console output: [Timestamp] ERROR: 404 Not found
 ```
 
 ### Coming soon

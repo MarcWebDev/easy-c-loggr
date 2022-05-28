@@ -18,12 +18,20 @@ function formatString(type) {
 export default class Logger {
   formattedDate = false;
   formatLanguage = 'EN';
+  prefixes = {
+    error: '',
+    log: '',
+    success: '',
+    warn: '',
+    hint: '',
+  };
 
-  constructor(formattedDate, formatLanguage) {
-    this.formattedDate = formattedDate;
-    this.formatLanguage = formatLanguage;
+  constructor(options) {
+    this.formattedDate = options.formattedDate;
+    this.formatLanguage = options.formatLanguage;
   }
 
+  // Color methods
   error(msg) {
     console.log(
       color.gray(
@@ -33,7 +41,9 @@ export default class Logger {
             : formatString()
         }] `
       ),
-      color.red(msg)
+      color.red(
+        `${this.prefixes.error != '' ? this.prefixes.error + ' ' : ''}${msg}`
+      )
     );
   }
 
@@ -46,7 +56,9 @@ export default class Logger {
             : formatString()
         }] `
       ),
-      color.white(msg)
+      color.white(
+        `${this.prefixes.log != '' ? this.prefixes.log + ' ' : ''}${msg}`
+      )
     );
   }
 
@@ -59,7 +71,11 @@ export default class Logger {
             : formatString()
         }] `
       ),
-      color.green(msg)
+      color.green(
+        `${
+          this.prefixes.success != '' ? this.prefixes.success + ' ' : ''
+        }${msg}`
+      )
     );
   }
 
@@ -72,7 +88,9 @@ export default class Logger {
             : formatString()
         }] `
       ),
-      color.yellow(msg)
+      color.yellow(
+        `${this.prefixes.warn != '' ? this.prefixes.warn + ' ' : ''}${msg}`
+      )
     );
   }
 
@@ -85,7 +103,18 @@ export default class Logger {
             : formatString()
         }] `
       ),
-      color.blueBright(msg)
+      color.blueBright(
+        `${this.prefixes.hint != '' ? this.prefixes.hint + ' ' : ''}${msg}`
+      )
     );
+  }
+
+  // Configuration methods
+  setPrefixes(options) {
+    this.prefixes.error = options.error;
+    this.prefixes.log = options.log;
+    this.prefixes.success = options.success;
+    this.prefixes.warn = options.warn;
+    this.prefixes.hint = options.hint;
   }
 }

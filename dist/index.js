@@ -39,41 +39,60 @@ function formatString(type) {
 }
 
 var Logger = /*#__PURE__*/function () {
-  function Logger(formattedDate, formatLanguage) {
+  function Logger(options) {
     _classCallCheck(this, Logger);
 
     _defineProperty(this, "formattedDate", false);
 
     _defineProperty(this, "formatLanguage", 'EN');
 
-    this.formattedDate = formattedDate;
-    this.formatLanguage = formatLanguage;
-  }
+    _defineProperty(this, "prefixes", {
+      error: '',
+      log: '',
+      success: '',
+      warn: '',
+      hint: ''
+    });
+
+    this.formattedDate = options.formattedDate;
+    this.formatLanguage = options.formatLanguage;
+  } // Color methods
+
 
   _createClass(Logger, [{
     key: "error",
     value: function error(msg) {
-      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].red(msg));
+      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].red("".concat(this.prefixes.error != '' ? this.prefixes.error + ' ' : '').concat(msg)));
     }
   }, {
     key: "log",
     value: function log(msg) {
-      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].white(msg));
+      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].white("".concat(this.prefixes.log != '' ? this.prefixes.log + ' ' : '').concat(msg)));
     }
   }, {
     key: "success",
     value: function success(msg) {
-      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].green(msg));
+      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].green("".concat(this.prefixes.success != '' ? this.prefixes.success + ' ' : '').concat(msg)));
     }
   }, {
     key: "warn",
     value: function warn(msg) {
-      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].yellow(msg));
+      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].yellow("".concat(this.prefixes.warn != '' ? this.prefixes.warn + ' ' : '').concat(msg)));
     }
   }, {
     key: "hint",
     value: function hint(msg) {
-      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].blueBright(msg));
+      console.log(_ansiColors["default"].gray("[".concat(this.formattedDate ? formatString(this.formatLanguage) : formatString(), "] ")), _ansiColors["default"].blueBright("".concat(this.prefixes.hint != '' ? this.prefixes.hint + ' ' : '').concat(msg)));
+    } // Configuration methods
+
+  }, {
+    key: "setPrefixes",
+    value: function setPrefixes(options) {
+      this.prefixes.error = options.error;
+      this.prefixes.log = options.log;
+      this.prefixes.success = options.success;
+      this.prefixes.warn = options.warn;
+      this.prefixes.hint = options.hint;
     }
   }]);
 
